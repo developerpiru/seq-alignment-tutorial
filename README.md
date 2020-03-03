@@ -6,17 +6,11 @@ These are a collection of scripts and instructions to leverage cloud computing p
 + [Cloud platforms](https://github.com/developerpiru/cloudservers#cloud-platforms)
 
   + [Google Cloud Platform (GCP)](https://github.com/developerpiru/cloudservers#google-cloud-platform)
-  + [Amazon Web Services (AWS)](https://github.com/developerpiru/cloudservers#amazon-web-services)
-  + [Microsoft Azure](https://github.com/developerpiru/cloudservers#microsoft-azure)
 + [Getting started with GCP](https://github.com/developerpiru/cloudservers#getting-started-with-gcp)
 
 ## Cloud platforms
 
 ### Google Cloud Platform (GCP)
-
-### Amazon Web Services (AWS)
-
-### Microsoft Azure
 
 ## Getting started with GCP
 
@@ -93,4 +87,85 @@ Enter this command to mount your storage bucket:
   gcsfuse myBucketName mountfolder
   ```
   Where ```myBucketName``` is the name of the storage bucket you created.
- 
+
+#### Install Miniconda
+
+Miniconda is required to download and install some bioinformatics tools. You can install it using these commands:
+  ```
+  wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  bash Miniconda3-latest-Linux-x86_64.sh
+  ```
+  Then follow the prompts to complete installation.
+  
+You may have to open a new terminal window in order for the ```conda``` command to be recognized.
+
+Try entering this command:
+  ```
+  conda --version
+  ```
+  You should see the version number of conda if it installed correctly.
+  
+#### Installing Basemount
+
+Like gcsfuse, basemount has their own software to let you interface with your basepsace account. This will allow you to mount your basespace account as a virtual drive and transfer your read files.
+
+Enter these commands to install basemount:
+  ```
+  sudo bash -c "$(curl -L https://basemount.basespace.illumina.com/install)"
+  mkdir basemountfolder
+  ```
+  
+You now have basemount installed and have created a folder called "basemountfolder". This is where you will mount your basemount account.
+
+Enter this command to mount your storage bucket:
+  ```
+  basemount basemountfolder
+  ```
+  You will now be prompted to login to your basespace account and once you do, you can access your files.
+  
+## RNA-seq analysis with your VM
+
+Once you have the basics setup, you can begin your RNA-seq analysis. 
+
+First you need to install STAR aligner. 
+  ```
+  conda install STAR
+  ```
+
+Then you need to download some required reference files in order to build a reference genome for your organism of interest (e.g. human, mouse)
+
+Make a new directory to store these files and move into that folder:
+  ```
+  cd $HOME
+  mkdir STARgenomefiles
+  cd STARgenomefiles
+  ```
+
+First, you need a "primary assembly file" in FASTA format. You can access it here: ftp://ftp.ensembl.org/pub/ 
+Look for the latest release, e.g. for humans: ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/
+Download the full assembly ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gzor only download the region of interest depending on your experiment. 
+
+  ```
+  wget ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+  gunzip -k Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+  ```
+  This may take a while.
+
+Second, you need a gtf which holds gene structure information. You can access release 88 for the human genome here: http://labshare.cshl.edu/shares/gingeraslab/www-data/dobin/STAR/STARgenomes/ENSEMBL/homo_sapiens/ENSEMBL.homo_sapiens.release-83/Homo_sapiens.GRCh38.83.gtf
+
+Now make a new folder in your home directory to store the generated reference genome:
+  ```
+  cd $HOME
+  mkdir STARgenome
+  ```
+
+Now you can enter the command to generate the genome:
+  ```
+  STAR --runThreadN 64 --runMode genomeGenerate --genomeDir $HOME/STARgenome --genomeFastaFiles $HOME/STARgenomefiles/Homo_sapiens.GRCh38.dna.primary_assembly.fa --sjdbGTFfile makegenomefiles/Homo_sapiens.GRCh38.83.gtf --sjdbOverhang 100
+  ```
+  Where ```--runThreadN 64``` specificies the number of CPU threads you want to use (general rule is CPU cores x2 or CPU cores x4)
+  
+This will take a while to generate.
+
+
+
