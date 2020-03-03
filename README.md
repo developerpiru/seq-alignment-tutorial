@@ -41,8 +41,8 @@ Create a Google account if you don't already have one and then go to https://con
 2. This is where all of your existing VMs will be listed. To create a new VM, click **Create Instance** at the top.
   ![Image of GCP Dashboard](Screenshots/GCP/createinstance-2.png)
 
-3. The page will ask you to specify details for your new VM instance.
-  ![Image of GCP Dashboard](Screenshots/GCP/createinstance-3.png)
+3. The page will ask you to specify details for your new VM instance. Notice the cost right. The montly cost is the cost you will incur if you run the VM 24/7. You won't be doing this for analysis purposes; you will only run it for a few hours so only pay attention to the hourly cost which is 6.1 cents/hour for the default configuration shown here. The more powerful your VM, the faster tasks will finish (generally speaking), so in some situations it would make sense to get a more expensive hourly VM. 
+![Image of GCP Dashboard](Screenshots/GCP/createinstance-3.png)
   
   You need to specify these details:
   + Instance name
