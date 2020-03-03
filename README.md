@@ -44,4 +44,8 @@ These are a collection of scripts and instructions to leverage cloud computing p
   + Under **Firewall**, select **Allow HTTP traffic** and **Allow HTTPS traffic**
   + Click the **Create** button at the button when you are done.
 
-4.
+4. This will return you to the **VM instances** page where you will see your newly created instance. The green icon indicates the VM is currently running.
+![Image of GCP Dashboard](Screenshots/GCP/createinstance-5.png)
+
+5. To connect to the VM, click on the **SSH** button (after ensuring it is on). You can use the menu button to Start, Stop, Reset, or Delete a VM.
+
