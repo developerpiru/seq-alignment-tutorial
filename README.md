@@ -71,4 +71,26 @@ Think of a storage bucket as a cloud storage drive where you can save your files
 
 ### How to setup a newly created VM
 
+#### Setting up GCSFuse
 A newly created VM only has a basic install of Ubuntu and you must now install any software you need. 
+
+The first step is to install [gcsfuse](https://github.com/GoogleCloudPlatform/gcsfuse) on your new VM. Gcsfuse allows you to connect your VM to a storage bucket you own. This will "mount" your storage bucket as a virtual drive in your VM so you can transfer files to and from it. 
+
+Copy and paste these commands to setup gcsfuse:
+  ```
+  export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
+  echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
+  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  sudo apt-get update
+  sudo apt-get install gcsfuse
+  mkdir mountfolder
+  ```
+
+You now have gcsfuse installed and have created a folder called "mountfolder". This is where you will mount your storage bucket.
+
+Enter this command to mount your storage bucket:
+  ```
+  gcsfuse myBucketName mountfolder
+  ```
+  Where ```myBucketName``` is the name of the storage bucket you created.
+ 
