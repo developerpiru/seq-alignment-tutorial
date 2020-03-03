@@ -150,7 +150,7 @@ You may also wish to have  graphical user interface (GUI) desktop for your serve
 
 A script is provided to setup a VNC server and automatically configure it. Download the required files from here: 
 
-1. Download the latest TRACS setup files here: https://github.com/developerpiru/cloudservers/blob/master/vnc-setup.zip
+1. Download the setup files here: https://github.com/developerpiru/cloudservers/blob/master/vnc-setup.zip
 2. Copy this to your storage bucket that you created above
 3. Mount your storage bucket with gcsfuse if you haven't done so already:
   ```
