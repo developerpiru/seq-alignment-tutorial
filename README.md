@@ -142,11 +142,11 @@ Enter this command to mount your storage bucket:
   ```
   You will now be prompted to login to your basespace account and once you do, you can access your files.
 
-#### Install VNC server
+### Install VNC server
 
 You may also wish to have  graphical user interface (GUI) desktop for your server instead of a command-line only ssh terminal interface. To do this, you must install a VNC (virtual network computing) server that will allow you to remotely connect to a desktop. You must also install a desktop environment on your Linux VM because one is not installed by default.
 
-##### Automatically install VNC server on Ubuntu
+#### Automatically install VNC server on Ubuntu
 
 A script is provided to setup a VNC server and automatically configure it. Download the required files from here: 
 
@@ -178,7 +178,7 @@ A script is provided to setup a VNC server and automatically configure it. Downl
 	bash vnc-setup.sh
 	```
 	
-##### Install VNC client on your local computer
+#### Install VNC client on your local computer
 
 You need a VNC client to connect to the VNC server you just setup on your VM. 
 
@@ -186,7 +186,7 @@ You can install either PuTTY for Windows (https://www.chiark.greenend.org.uk/~sg
 
 See below for instructions on how to connect to your remote server.
 
-##### Connecting to VNC server on remote server
+#### Connecting to VNC server on remote server
 1. On your VM, start the VNC server with this command:
 	```
 	vncserver -geometry 1200x1050
@@ -215,7 +215,7 @@ Firefox:
 	sudo apt-get install firefox
 	
 
-##### Stopping the VNC server
+#### Stopping the VNC server
 You can stop the VNC server by entering this command in a terminal on your VM:
 	
 	vncserver -kill :1
