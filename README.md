@@ -54,7 +54,6 @@ Create a Google account if you don't already have one and then go to https://con
   + Click the **Change** button under **Boot disk** to specify the hard drive and OS configuration
   
 ![Image of GCP Dashboard](Screenshots/GCP/createinstance-4.png)
-
     + Select Ubuntu for the **Operating system**
     + Select Ubuntu 18.04 LTS for **Version**
     + Set the size for 500 GB
