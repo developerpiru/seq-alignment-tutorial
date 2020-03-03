@@ -24,6 +24,8 @@ These are a collection of scripts and instructions to leverage cloud computing p
 
 ### Google Cloud Platform (GCP)
 
+Create a Google account if you don't already have one and then go to https://console.cloud.google.com/ to setup your cloud account. 
+
 ## Getting started with GCP
 
 ### Creating a new compute instance
