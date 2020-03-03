@@ -3,12 +3,12 @@ These are a collection of scripts and instructions to leverage cloud computing p
 
 ## Table of contents
 
-+ [Cloud platforms](https://github.com/developerpiru/BEAVR#cloud-platforms)
++ [Cloud platforms](https://github.com/developerpiru/cloudservers#cloud-platforms)
 
-  + [Google Cloud Platform (GCP)](https://github.com/developerpiru/BEAVR#google-cloud-platform)
-  + [Amazon Web Services (AWS)](https://github.com/developerpiru/BEAVR#amazon-web-services)
-  + [Microsoft Azure](https://github.com/developerpiru/BEAVR#microsoft-azure)
-+ [Getting started with GCP](https://github.com/developerpiru/BEAVR#getting-started-with-gcp)
+  + [Google Cloud Platform (GCP)](https://github.com/developerpiru/cloudservers#google-cloud-platform)
+  + [Amazon Web Services (AWS)](https://github.com/developerpiru/cloudservers#amazon-web-services)
+  + [Microsoft Azure](https://github.com/developerpiru/cloudservers#microsoft-azure)
++ [Getting started with GCP](https://github.com/developerpiru/cloudservers#getting-started-with-gcp)
 
 ## Cloud platforms
 
