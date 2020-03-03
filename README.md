@@ -196,6 +196,7 @@ Mount your basemount folder and download your files to your VM:
   ```
   basemount basemountfolder
   ```
+  Now you can access your basespace projects, samples, and files from the ```basemountfolder``` folder.
 
 Create a new folder to store your downloaded fastq files
   ```
