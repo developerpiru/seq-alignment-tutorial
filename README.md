@@ -199,6 +199,7 @@ Mount your basemount folder and download your files to your VM:
 
 Create a new folder to store your downloaded fastq files
   ```
+  cd $HOME
   mkdir myfastqfiles
   ```
 
@@ -221,30 +222,38 @@ You can use wildcards like this:
   
 ### Get read counts with STAR
 
+Make a new directory to store your output files:
+  ```
+  cd $HOME
+  mkdir readcounts
+  ```
+
 You can run this command to start alignments and generating read counts with STAR. Modify these parameters for your experiment:
   + This example shows how to do this for 6 samples with fastq files named: ```WTA-1.fastq```, ```WTA-2.fastq```, ```WTA-3.fastq```, ```KOA-1.fastq```, ```KOA-2.fastq```, ```KOA-3.fastq```. 
-  + The fastq files are stored in ```~/mount/RNAseq-aug2018/``` which is specified with ```--readFilesIn```.
+  + The fastq files are stored in ```$HOME/myfastqfiles``` which is specified with ```--readFilesIn```.
   + The location of the genome you generated is specified by ```--genomeDir```
   + The location of the gtf file you downloaded is specififed by ```--sjdbGTFfile```
   + The output location and filename prefix is specified by ```--outFileNamePrefix```
 
 ```
 #WTA-1.fastq:
-STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/WTA-1.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/WTA-1 --genomeLoad LoadAndKeep
+STAR --runThreadN 96 --genomeDir $HOME/STARgenome --readFilesIn $HOME/myfastqfiles/WTA-1.fastq --sjdbGTFfile $HOME/STARgenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix $HOME/readcounts/WTA-1 --genomeLoad LoadAndKeep
 
 #WTA-2.fastq:
-STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/WTA-2.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/WTA-2
+STAR --runThreadN 96 --genomeDir $HOME/STARgenome --readFilesIn $HOME/myfastqfiles/WTA-2.fastq --sjdbGTFfile $HOME/STARgenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix $HOME/readcounts/WTA-2
 
 #WTA-3.fastq:
-STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/WTA-3.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/WTA-3
+STAR --runThreadN 96 --genomeDir $HOME/STARgenome --readFilesIn $HOME/myfastqfiles/WTA-3.fastq --sjdbGTFfile $HOME/STARgenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix $HOME/readcounts/WTA-3
 
 #KO4A-1.fastq:
-STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/KO4A-1.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/KO4A-1
+STAR --runThreadN 96 --genomeDir $HOME/STARgenome --readFilesIn $HOME/myfastqfiles/KO4A-1.fastq --sjdbGTFfile $HOME/STARgenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix $HOME/readcounts/KO4A-1
 
 #KO4A-2.fastq:
-STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/KO4A-2.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/KO4A-2
+STAR --runThreadN 96 --genomeDir $HOME/STARgenome --readFilesIn $HOME/myfastqfiles/KO4A-2.fastq --sjdbGTFfile $HOME/STARgenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix $HOME/readcounts/KO4A-2
 
 #KO4A-3.fastq:
-STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/KO4A-3.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/KO4A-3
+STAR --runThreadN 96 --genomeDir $HOME/STARgenome --readFilesIn $HOME/myfastqfiles/KO4A-3.fastq --sjdbGTFfile $HOME/STARgenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix $HOME/readcounts/KO4A-3
 ```
+
+Once the alignments finish, transfer your files from your output folder
 
