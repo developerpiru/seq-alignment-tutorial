@@ -13,6 +13,7 @@ These are a collection of scripts and instructions to leverage cloud computing p
       + [Setting up GCSFuse](https://github.com/developerpiru/cloudservers#setting-up-gcsfuse)
       + [Install Miniconda](https://github.com/developerpiru/cloudservers#install-miniconda)
       + [Install Basemount](https://github.com/developerpiru/cloudservers#installing-basemount)
+      + [Install VNC server]()
     + [RNA-seq analysis with your VM](https://github.com/developerpiru/cloudservers#rna-seq-analysis-with-your-vm)     
       + [Setting up STAR aligner](https://github.com/developerpiru/cloudservers#setting-up-star-aligner)
       + [Preparing your read files](https://github.com/developerpiru/cloudservers#preparing-your-read-files)
@@ -137,7 +138,86 @@ Enter this command to mount your storage bucket:
   ```
   You will now be prompted to login to your basespace account and once you do, you can access your files.
 
+#### Install VNC server
+
+You may also wish to have  graphical user interface (GUI) desktop for your server instead of a command-line only ssh terminal interface. To do this, you must install a VNC (virtual network computing) server that will allow you to remotely connect to a desktop. You must also install a desktop environment on your Linux VM because one is not installed by default.
+
+##### Automatically install VNC server on Ubuntu
+
+A script is provided to setup a VNC server and automatically configure it. Download the required files from here: 
+
+1. Download the latest TRACS setup files here: https://github.com/developerpiru/cloudservers/blob/master/vnc-setup.zip
+2. Copy this to your storage bucket that you created above
+3. Mount your storage bucket with gcsfuse if you haven't done so already:
+  ```
+  gcsfuse myBucketName mountfolder
+  ```
+4. Navigate to where you copied vnc-setup.zip in your storage bucket
+  ```
+  cd mountfolder/path/to/where/you/saved/the/file
+  ```
+5. Extract the vnc.setup.zip archive
+	```
+	unzip vnc-setup.zip
+	```
+	***Note:*** if you don't have ```unzip``` installed, you can install it using this command:
+	```
+	sudo apt-get update
+	sudo apt install unzip
+	```
+6. Change the permissions of the ```vnc-setup.sh``` script so it is executable:
+	```
+	sudo chmod +x vnc-setup.sh
+	```
+4. Run the script:
+	```
+	bash vnc-setup.sh
+	```
+	
+##### Install VNC client on your local computer
+
+You need a VNC client to connect to the VNC server you just setup on your VM. 
+
+You can install either PuTTY for Windows (https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or RealVNC's VNC Viewer for Windows, Mac OS, or Linux (https://www.realvnc.com/en/connect/download/viewer/)
+
+See below for instructions on how to connect to your remote server.
+
+##### Connecting to VNC server on remote server
+1. On your VM, start the VNC server with this command:
+	```
+	vncserver -geometry 1200x1050
+	```
+	**Note:** the `-geometry 1200x1050` flag is optional and you can customize it to any resolution you prefer
+
+2. Open your VNC client (PuTTY or VNC Viewer) and enter the **external IP address** (not its local IP!) of your remote computer followed by the `:5901` port. For example: `192.0.2.0:5901`. You can find the external IP address of your VM by looking at your [VM instances list](https://console.cloud.google.com/compute/instances).
+	
+3. Enter the password you created earlier when you ran the vnc-setup.sh script.
+
+4. If prompted, select to use the default desktop configuration.
+
+You should now see the Ubuntu desktop now and be able to interact with the GUI using your mouse and keyboard. 
+
+**Note:** to help you with downloading any other required components, it is recommended that you install Chrome or Firefox on your Linux VM:
+
+Chrome:
+	
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo dpkg -i google-chrome-stable_current_amd64.deb
+	
+	
+Firefox:
+	
+	sudo apt-get update
+	sudo apt-get install firefox
+	
+
+##### Stopping the VNC server
+You can stop the VNC server by entering this command in a terminal on your VM:
+	
+	vncserver -kill :1
+	
 ---
+
 
 ## RNA-seq analysis with your VM
 
