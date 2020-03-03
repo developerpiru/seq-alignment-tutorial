@@ -6,7 +6,7 @@ These are a collection of scripts and instructions to leverage cloud computing p
 + [Cloud platforms](https://github.com/developerpiru/cloudservers#cloud-platforms)
 
   + [Google Cloud Platform (GCP)](https://github.com/developerpiru/cloudservers#google-cloud-platform)
-+ [Getting started with GCP](https://github.com/developerpiru/cloudservers#getting-started-with-gcp)
+    + [Getting started with GCP](https://github.com/developerpiru/cloudservers#getting-started-with-gcp)
 
 ## Cloud platforms
 
