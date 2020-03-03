@@ -7,7 +7,7 @@ These are a collection of scripts and instructions to leverage cloud computing p
 
   + [Google Cloud Platform (GCP)](https://github.com/developerpiru/cloudservers#google-cloud-platform-gcp)
     + [Getting started with GCP](https://github.com/developerpiru/cloudservers#getting-started-with-gcp)
-    + [Creating a new compute instance](https://github.com/developerpiru/cloudservers#creating-a-new-compute-instance)\
+    + [Creating a new compute instance](https://github.com/developerpiru/cloudservers#creating-a-new-compute-instance)
     + [Creating a storage bucket](https://github.com/developerpiru/cloudservers#creating-a-storage-bucket)
     + How to setup a newly created VM](https://github.com/developerpiru/cloudservers#how-to-setup-a-newly-created-vm)
       + [Setting up GCSFuse](https://github.com/developerpiru/cloudservers#setting-up-gcsfuse)
