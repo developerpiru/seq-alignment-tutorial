@@ -61,6 +61,7 @@ Create a Google account if you don't already have one and then go to https://con
 
 5. To connect to the VM, click on the **SSH** button (after ensuring it is on). You can use the menu button to Start, Stop, Reset, or Delete a VM.
 
+---
 ### Creating a storage bucket
 
 Think of a storage bucket as a cloud storage drive where you can save your files. You can use it as a shared folder to transfer files to and from your local computer to a VM. 
@@ -82,6 +83,7 @@ Think of a storage bucket as a cloud storage drive where you can save your files
 
 5. You can upload files by using the buttons provided or by dragging files into the browser from your computer.
 
+---
 ### How to setup a newly created VM
 
 #### Setting up GCSFuse
@@ -107,6 +109,7 @@ Enter this command to mount your storage bucket:
   ```
   Where ```myBucketName``` is the name of the storage bucket you created.
 
+---
 #### Install Miniconda
 
 Miniconda is required to download and install some bioinformatics tools. You can install it using these commands:
@@ -123,7 +126,8 @@ Try entering this command:
   conda --version
   ```
   You should see the version number of conda if it installed correctly.
-  
+
+---
 #### Installing Basemount
 
 Like gcsfuse, basemount has their own software to let you interface with your basepsace account. This will allow you to mount your basespace account as a virtual drive and transfer your read files.
@@ -142,6 +146,7 @@ Enter this command to mount your storage bucket:
   ```
   You will now be prompted to login to your basespace account and once you do, you can access your files.
 
+---
 ### Install VNC server
 
 You may also wish to have  graphical user interface (GUI) desktop for your server instead of a command-line only ssh terminal interface. To do this, you must install a VNC (virtual network computing) server that will allow you to remotely connect to a desktop. You must also install a desktop environment on your Linux VM because one is not installed by default.
@@ -177,7 +182,7 @@ A script is provided to setup a VNC server and automatically configure it. Downl
 	```
 	bash vnc-setup.sh
 	```
-	
+---	
 #### Install VNC client on your local computer
 
 You need a VNC client to connect to the VNC server you just setup on your VM. 
@@ -186,6 +191,7 @@ You can install either PuTTY for Windows (https://www.chiark.greenend.org.uk/~sg
 
 See below for instructions on how to connect to your remote server.
 
+---
 #### Connecting to VNC server on remote server
 1. On your VM, start the VNC server with this command:
 	```
@@ -274,6 +280,7 @@ Now you can enter the command to generate the genome:
   
 This will take a while to generate.
 
+---
 ### Preparing your read files
 
 Mount your basemount folder and download your files to your VM:
@@ -303,7 +310,8 @@ Then you need to concatenate files run in different lanes for the same sample. Y
   cat KO4A-2*.fastq > KO4A-2.fastq
   cat KO4A-3*.fastq > KO4A-3.fastq
   ```
-  
+
+---
 ### Get read counts with STAR
 
 Make a new directory to store your output files:
