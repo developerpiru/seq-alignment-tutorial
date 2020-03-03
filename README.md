@@ -352,5 +352,7 @@ Once the alignments finish, transfer your files from your output folder to your 
   cp $HOME/readcounts* $HOME/mountfolder
   ```
   
-  You must also transfer any other files that you wish to download to your local computer.
+You must also transfer any other files that you wish to download to your local computer. 
+
+You can then access your storage bucket from your local computer at from the [Storage browser page](https://console.cloud.google.com/storage/browser) and download your files.
 
