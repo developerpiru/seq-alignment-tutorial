@@ -207,7 +207,7 @@ Once you have downloaded your files, extract them:
   gunzip -k *.gz
   ```
 
-Then you need to concatenate files run in different names for the same sample:
+Then you need to concatenate files run in different lanes for the same sample:
 You can use wildcards like this:
   ```
   cat WTA-1*.fastq > WTA-1.fastq
