@@ -243,9 +243,9 @@ Make a new directory to store these files and move into that folder:
   cd STARgenomefiles
   ```
 
-First, you need a "primary assembly file" in FASTA format. You can access it here: ftp://ftp.ensembl.org/pub/ 
-Look for the latest release, e.g. for humans: ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/
-Download the full assembly ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz or only download the region of interest depending on your experiment. 
+First, you need a "primary assembly file" in FASTA format. You can access it here: [ftp://ftp.ensembl.org/pub/](ftp://ftp.ensembl.org/pub/)
+Look for the latest release, e.g. for humans: [ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/](ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/)
+Download the full assembly [ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz](ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz) or only download the region of interest depending on your experiment. 
 
   ```
   wget ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
@@ -253,7 +253,7 @@ Download the full assembly ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapie
   ```
   This may take a while.
 
-Second, you need a gtf which holds gene structure information. Make sure the release version is the same as your primary assembly file above. You can access release 99 for the human genome here: ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
+Second, you need a gtf which holds gene structure information. Make sure the release version is the same as your primary assembly file above. You can access release 99 for the human genome here: [ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz](ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz)
 
   ```
   wget ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
