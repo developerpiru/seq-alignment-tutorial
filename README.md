@@ -125,6 +125,8 @@ Enter this command to mount your storage bucket:
   
 ## RNA-seq analysis with your VM
 
+### Setting up STAR aligner
+
 Once you have the basics setup, you can begin your RNA-seq analysis. 
 
 First you need to install STAR aligner. 
@@ -143,7 +145,7 @@ Make a new directory to store these files and move into that folder:
 
 First, you need a "primary assembly file" in FASTA format. You can access it here: ftp://ftp.ensembl.org/pub/ 
 Look for the latest release, e.g. for humans: ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/
-Download the full assembly ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gzor only download the region of interest depending on your experiment. 
+Download the full assembly ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz or only download the region of interest depending on your experiment. 
 
   ```
   wget ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
@@ -151,7 +153,12 @@ Download the full assembly ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapie
   ```
   This may take a while.
 
-Second, you need a gtf which holds gene structure information. You can access release 88 for the human genome here: http://labshare.cshl.edu/shares/gingeraslab/www-data/dobin/STAR/STARgenomes/ENSEMBL/homo_sapiens/ENSEMBL.homo_sapiens.release-83/Homo_sapiens.GRCh38.83.gtf
+Second, you need a gtf which holds gene structure information. Make sure the release version is the same as your primary assembly file above. You can access release 99 for the human genome here: ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
+
+  ```
+  wget ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
+  gunzip -k homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
+  ```
 
 Now make a new folder in your home directory to store the generated reference genome:
   ```
@@ -161,11 +168,67 @@ Now make a new folder in your home directory to store the generated reference ge
 
 Now you can enter the command to generate the genome:
   ```
-  STAR --runThreadN 64 --runMode genomeGenerate --genomeDir $HOME/STARgenome --genomeFastaFiles $HOME/STARgenomefiles/Homo_sapiens.GRCh38.dna.primary_assembly.fa --sjdbGTFfile makegenomefiles/Homo_sapiens.GRCh38.83.gtf --sjdbOverhang 100
+  STAR --runThreadN 64 --runMode genomeGenerate --genomeDir $HOME/STARgenome --genomeFastaFiles $HOME/STARgenomefiles/Homo_sapiens.GRCh38.dna.primary_assembly.fa --sjdbGTFfile makegenomefiles/Homo_sapiens.GRCh38.99.gtf --sjdbOverhang 100
   ```
   Where ```--runThreadN 64``` specificies the number of CPU threads you want to use (general rule is CPU cores x2 or CPU cores x4)
   
 This will take a while to generate.
 
+### Preparing your read files
 
+Mount your basemount folder and download your files to your VM:
+  ```
+  basemount basemountfolder
+  ```
+
+Create a new folder to store your downloaded fastq files
+  ```
+  mkdir myfastqfiles
+  ```
+
+Once you have downloaded your files, extract them:
+  ```
+  gunzip -k *.gz
+  ```
+
+Then you need to concatenate files run in different names for the same sample:
+You can use wildcards like this:
+  ```
+  cat WTA-1*.fastq > WTA-1.fastq
+  cat WTA-2*.fastq > WTA-2.fastq
+  cat WTA-3*.fastq > WTA-3.fastq
+  
+  cat KO4A-1*.fastq > KO4A-1.fastq
+  cat KO4A-2*.fastq > KO4A-2.fastq
+  cat KO4A-3*.fastq > KO4A-3.fastq
+  ```
+  
+### Get read counts with STAR
+
+You can run this command to start alignments and generating read counts with STAR. Modify these parameters for your experiment:
+  + This example shows how to do this for 6 samples with fastq files named: ```WTA-1.fastq```, ```WTA-2.fastq```, ```WTA-3.fastq```, ```KOA-1.fastq```, ```KOA-2.fastq```, ```KOA-3.fastq```. 
+  + The fastq files are stored in ```~/mount/RNAseq-aug2018/``` which is specified with ```--readFilesIn```.
+  + The location of the genome you generated is specified by ```--genomeDir```
+  + The location of the gtf file you downloaded is specififed by ```--sjdbGTFfile```
+  + The output location and filename prefix is specified by ```--outFileNamePrefix```
+
+```
+#WTA-1.fastq:
+STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/WTA-1.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/WTA-1 --genomeLoad LoadAndKeep
+
+#WTA-2.fastq:
+STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/WTA-2.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/WTA-2
+
+#WTA-3.fastq:
+STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/WTA-3.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/WTA-3
+
+#KO4A-1.fastq:
+STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/KO4A-1.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/KO4A-1
+
+#KO4A-2.fastq:
+STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/KO4A-2.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/KO4A-2
+
+#KO4A-3.fastq:
+STAR --runThreadN 96 --genomeDir ~/mount/STARgenome --readFilesIn ~/mount/RNAseq-aug2018/KO4A-3.fastq --sjdbGTFfile ~/mount/STARfiles/makegenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix ~/mount/RNAseq-aug2018/20180814-readcounts/KO4A-3
+```
 
