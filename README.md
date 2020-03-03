@@ -255,5 +255,10 @@ STAR --runThreadN 96 --genomeDir $HOME/STARgenome --readFilesIn $HOME/myfastqfil
 STAR --runThreadN 96 --genomeDir $HOME/STARgenome --readFilesIn $HOME/myfastqfiles/KO4A-3.fastq --sjdbGTFfile $HOME/STARgenomefiles/Homo_sapiens.GRCh38.92.gtf --sjdbOverhang 100 --quantMode TranscriptomeSAM GeneCounts --outFileNamePrefix $HOME/readcounts/KO4A-3
 ```
 
-Once the alignments finish, transfer your files from your output folder
+Once the alignments finish, transfer your files from your output folder to your storage bucket:
+  ```
+  cp $HOME/readcounts* $HOME/mountfolder
+  ```
+  
+  You must also transfer any other files that you wish to download to your local computer.
 
