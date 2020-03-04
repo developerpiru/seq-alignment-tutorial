@@ -263,7 +263,7 @@ Second, you need a gtf which holds gene structure information. Make sure the rel
 
   ```
   wget ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
-  gunzip -k homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
+  gunzip -k Homo_sapiens.GRCh38.99.gtf.gz
   ```
 
 Now make a new folder in your home directory to store the generated reference genome:
