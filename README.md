@@ -301,16 +301,17 @@ Mount your basemount folder and download your files to your VM:
 Look for files with the format ```.gz``` within the Files directory for each sample within a project. If you are using the default terminal interface for GCP, these filenames will be highlighted in a red font.
 You can copy the files from basespace to the folder you created like so:
   ```
-  cp [name-of-file].gz myfastqfiles
+  cp [name-of-file].gz $HOME/myfastqfiles
   ```
 
 **Note:** That command will copy files one at a time by name. Alternatively, you can use this command to copy all relevant files from one Sample/Files directory:
   ```
-  cp *.gz myfastqfiles
+  cp *.gz $HOME/myfastqfiles
   ```
 
 Once you have downloaded your files, extract them:
   ```
+  cd $HOME/myfastqfiles
   gunzip -k *.gz
   ```
 
