@@ -277,7 +277,7 @@ Now make a new folder in your home directory to store the generated reference ge
 
 Now you can enter the command to generate the genome:
   ```
-  STAR --runThreadN 64 --runMode genomeGenerate --genomeDir $HOME/STARgenome --genomeFastaFiles $HOME/STARgenomefiles/Homo_sapiens.GRCh38.dna.primary_assembly.fa --sjdbGTFfile makegenomefiles/Homo_sapiens.GRCh38.99.gtf --sjdbOverhang 100
+  STAR --runThreadN 64 --runMode genomeGenerate --genomeDir $HOME/STARgenome --genomeFastaFiles $HOME/STARgenomefiles/Homo_sapiens.GRCh38.dna.primary_assembly.fa --sjdbGTFfile $HOME/STARgenomefiles/Homo_sapiens.GRCh38.99.gtf --sjdbOverhang 100
   ```
   Where ```--runThreadN 64``` specificies the number of CPU threads you want to use (general rule is CPU cores x2 or CPU cores x4)
   
@@ -286,16 +286,27 @@ This will take a while to generate.
 ---
 ### Preparing your read files
 
+Create a new folder to store your downloaded fastq files
+  ```
+  cd $HOME
+  mkdir myfastqfiles
+  ```
+
 Mount your basemount folder and download your files to your VM:
   ```
   basemount basemountfolder
   ```
   Now you can access your basespace projects, samples, and files from the ```basemountfolder``` folder.
 
-Create a new folder to store your downloaded fastq files
+Look for files with the format ```.gz``` within the Files directory for each sample within a project. If you are using the default terminal interface for GCP, these filenames will be highlighted in a red font.
+You can copy the files from basespace to the folder you created like so:
   ```
-  cd $HOME
-  mkdir myfastqfiles
+  cp [name-of-file].gz myfastqfiles
+  ```
+
+That command will copy files one at a time by name. Alternatively, you can use this command to copy all relevant files from one Sample/Files directory:
+  ```
+  cp *.gz myfastqfiles
   ```
 
 Once you have downloaded your files, extract them:
