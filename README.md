@@ -304,7 +304,7 @@ You can copy the files from basespace to the folder you created like so:
   cp [name-of-file].gz myfastqfiles
   ```
 
-That command will copy files one at a time by name. Alternatively, you can use this command to copy all relevant files from one Sample/Files directory:
+**Note:** That command will copy files one at a time by name. Alternatively, you can use this command to copy all relevant files from one Sample/Files directory:
   ```
   cp *.gz myfastqfiles
   ```
