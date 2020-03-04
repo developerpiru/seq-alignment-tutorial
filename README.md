@@ -237,6 +237,9 @@ Once you have the basics setup, you can begin your RNA-seq analysis.
 
 First you need to install STAR aligner. 
   ```
+  conda config --add channels defaults
+  conda config --add channels bioconda
+  conda config --add channels conda-forge
   conda install STAR
   ```
 
