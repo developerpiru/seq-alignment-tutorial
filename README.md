@@ -116,7 +116,9 @@ Enter this command to mount your storage bucket:
 
 Miniconda is required to download and install some bioinformatics tools. You can install it using these commands:
   ```
+  #download setup install script
   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  #run setup
   bash Miniconda3-latest-Linux-x86_64.sh
   ```
   Then follow the prompts to complete installation.
@@ -136,7 +138,9 @@ Like gcsfuse, basemount has their own software to let you interface with your ba
 
 Enter these commands to install basemount:
   ```
+  #install basemount
   sudo bash -c "$(curl -L https://basemount.basespace.illumina.com/install)"
+  #create folder for mounting
   mkdir basemountfolder
   ```
   
@@ -239,9 +243,11 @@ Once you have the basics setup, you can begin your RNA-seq analysis.
 
 First you need to install STAR aligner. 
   ```
+  #add repository channels to conda
   conda config --add channels defaults
   conda config --add channels bioconda
   conda config --add channels conda-forge
+  #install STAR
   conda install STAR
   ```
 
@@ -250,6 +256,7 @@ Then you need to download some required reference files in order to build a refe
 Make a new directory to store these files and move into that folder:
   ```
   cd $HOME
+  #create folder for genome files
   mkdir STARgenomefiles
   cd STARgenomefiles
   ```
