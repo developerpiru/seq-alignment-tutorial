@@ -161,7 +161,7 @@ You may also wish to have  graphical user interface (GUI) desktop for your serve
 
 A script is provided to setup a VNC server and automatically configure it. Download the required files from here: 
 
-1. Download the setup files here: https://github.com/developerpiru/cloudservers/blob/master/vnc-setup.zip
+1. Download the setup files here: https://github.com/developerpiru/cloudservers/blob/master/VNC-setup.tar.gz
 2. Copy this to your storage bucket that you created above
 3. Mount your storage bucket with gcsfuse if you haven't done so already:
   ```
@@ -171,16 +171,15 @@ A script is provided to setup a VNC server and automatically configure it. Downl
   ```
   cd mountfolder/path/to/where/you/saved/the/file
   ```
-5. Extract the vnc.setup.zip archive
+5. Extract the VNC-setup.tar.gz archive
 	```
-	unzip vnc-setup.zip
+	tar -xzvf VNC-setup.tar.gz
 	```
-	***Note:*** if you don't have ```unzip``` installed, you can install it using this command:
+6. Change directories into the newly extracted folder
 	```
-	sudo apt-get update
-	sudo apt install unzip
+	cd VNC-setup
 	```
-6. Change the permissions of the ```vnc-setup.sh``` script so it is executable:
+7. Change the permissions of the ```vnc-setup.sh``` script so it is executable:
 	```
 	sudo chmod +x vnc-setup.sh
 	```
