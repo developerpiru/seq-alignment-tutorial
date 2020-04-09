@@ -179,11 +179,7 @@ A script is provided to setup a VNC server and automatically configure it. Downl
 	```
 	cd VNC-setup
 	```
-7. Change the permissions of the ```vnc-setup.sh``` script so it is executable:
-	```
-	sudo chmod +x vnc-setup.sh
-	```
-4. Run the script:
+7. Run the script:
 	```
 	bash vnc-setup.sh
 	```
