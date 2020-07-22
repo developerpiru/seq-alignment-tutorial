@@ -384,4 +384,6 @@ You can then access your storage bucket (your cloud storage) by visiting the [St
 
 Once you've downloaded your raw read files, you're ready to analyze the raw read counts and compute differentially expressed genes (DGE) using [BEAVR](https://github.com/developerpiru/BEAVR). BEAVR (Browser-based Exploration and Visualization of RNA-seq data) will automatically run DESeq2 analysis and provides an interactive environment for you to generate figures. 
 
+Whereas computuing raw read counts requires intensive computing power, calculating DGE does not. You can run BEAVR locally on your personal or a local computer, or you can optionally run it on your cloud server. Instructions to do either are provided on the [GitHub page](https://github.com/developerpiru/BEAVR) page, including how to create a shared cloud/local BEAVR server to share with multiple simultaneous users in your research group.
+
 The full documentation and tutorial for BEAVR is on the [GitHub page](https://github.com/developerpiru/BEAVR).
