@@ -18,10 +18,11 @@ These are a collection of scripts and instructions to leverage cloud computing p
       + [Install VNC client on your local computer](https://github.com/developerpiru/cloudservers#install-vnc-client-on-your-local-computer)
       + [Connecting to VNC server on remote server](https://github.com/developerpiru/cloudservers#connecting-to-vnc-server-on-remote-server)
       + [Stopping the VNC server](https://github.com/developerpiru/cloudservers#stopping-the-vnc-server)
-    + [RNA-seq analysis with your VM](https://github.com/developerpiru/cloudservers#rna-seq-analysis-with-your-vm)     
+    + [Getting raw read counts with your VM](https://github.com/developerpiru/cloudservers#rna-seq-analysis-with-your-vm)     
       + [Setting up STAR aligner](https://github.com/developerpiru/cloudservers#setting-up-star-aligner)
       + [Preparing your read files](https://github.com/developerpiru/cloudservers#preparing-your-read-files)
       + [Get read counts with STAR](https://github.com/developerpiru/cloudservers#get-read-counts-with-star)
+    + [Analyzing your raw read counts with BEAVR]()
 
 ---
 
@@ -230,7 +231,7 @@ You can stop the VNC server by entering this command in a terminal on your VM:
 ---
 
 
-## RNA-seq analysis with your VM
+## Getting raw read counts with your VM
 
 ### Setting up STAR aligner
 
@@ -373,5 +374,14 @@ Once the alignments finish, transfer your files from your output folder to your 
   
 You must also transfer any other files that you wish to download to your local computer. 
 
-You can then access your storage bucket from your local computer at from the [Storage browser page](https://console.cloud.google.com/storage/browser) and download your files.
+You can then access your storage bucket (your cloud storage) by visiting the [Storage browser page](https://console.cloud.google.com/storage/browser) from your personal/local computer and download your files.
 
+
+---
+
+
+## Analyzing your raw read counts with BEAVR
+
+Once you've downloaded your raw read files, you're ready to analyze the raw read counts and compute differentially expressed genes (DGE) using [BEAVR](https://github.com/developerpiru/BEAVR). BEAVR (Browser-based Exploration and Visualization of RNA-seq data) will automatically run DESeq2 analysis and provides an interactive environment for you to generate figures. 
+
+The full documentation and tutorial for BEAVR is on the [GitHub page](https://github.com/developerpiru/BEAVR).
