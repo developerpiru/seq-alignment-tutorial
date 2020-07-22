@@ -22,7 +22,7 @@ These are a collection of scripts and instructions to leverage cloud computing p
       + [Setting up STAR aligner](https://github.com/developerpiru/cloudservers#setting-up-star-aligner)
       + [Preparing your read files](https://github.com/developerpiru/cloudservers#preparing-your-read-files)
       + [Get read counts with STAR](https://github.com/developerpiru/cloudservers#get-read-counts-with-star)
-    + [Analyzing your raw read counts with BEAVR]()
+   + [Analyzing your raw read counts with BEAVR](https://github.com/developerpiru/cloudservers#analyzing-your-raw-read-counts-with-beavr)
 
 ---
 
