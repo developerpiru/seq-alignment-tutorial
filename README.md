@@ -1,4 +1,4 @@
-# Cloud servers
+# Intro
 These are a collection of scripts and instructions to leverage cloud computing platforms for NGS analysis (like RNA-seq) to generate raw read counts that can then be used to perform DGE analysis in [BEAVR](https://github.com/developerpiru/BEAVR).
 
 The instructions provided here are for the Google Cloud Platform. If you don't have an account yet, you can [sign up for a free trial](https://cloud.google.com/free) where you will get $300 USD ($400 CAD) for 1 year. A future update to these instructions will provide instructions for Amazon's AWS and perhaps even Microsoft Azure. For now, if you are using AWS or Azure, setup a fresh compute unit running Ubuntu 18.04 LTS and you can skip ahead to installing [Miniconda](https://github.com/developerpiru/cloudservers#install-miniconda).
